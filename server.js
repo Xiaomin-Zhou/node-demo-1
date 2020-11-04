@@ -24,12 +24,30 @@ var server = http.createServer(function(request, response){
   if(path === '/'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
-    response.write(`二哈`)
+    response.write(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/x">
+    </head>
+    <body>
+        <h1>标题</h1>
+        <script src='/y'></script> 
+    </body>
+    </html>`)
     response.end()
   } else if(path === '/x'){
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/css;charset=utf-8')
     response.write(`body{color: red;}`)
+    response.end()
+  }else if(path === '/y'){
+    response.statusCode = 200
+    response.setHeader('Content-Type', 'text/javascript;charset=utf-8')
+    response.write(`console.log('这是JS内容')`)
     response.end()
   } else {
     response.statusCode = 404
